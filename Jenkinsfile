@@ -17,8 +17,13 @@ pipeline {
             steps {
                 sh 'mvn clean install' 
             }
+        }
+	    stage ('Test') {
+            steps {
+                sh 'mvnw test' 
+            }
             post {
-                success {
+                always {
                     junit 'target/surefire-reports/**/*.xml' 
                 }
             }
